@@ -48,7 +48,7 @@ There are 2 services, `web` and `compiler`
 
 ### web
 
-The web applicaiton is written in rails and uses scaffold to keep things very easy. Extism comes with host clients in many languages
+The web application is written in rails and uses scaffold to keep things very easy. Extism comes with host clients in many languages
 so using rails was a good test of the ruby client.
 
 ### compiler
