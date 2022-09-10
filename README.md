@@ -38,7 +38,7 @@ Click `Create Endpoint`. If it compiles and saves the endpoint you will see this
 You can now hit the endpoint at `http://localhost:3000/api/:endpoint_name`:
 
 ```
-$ curl http://localhost:3000/api/myendpoint -X GET
+$ curl http://localhost:3000/api/mynewendpoint -X GET
 { "count": 42, "path": "/api/myendpoint", "hello": "world"}⏎ 
 ```
 
