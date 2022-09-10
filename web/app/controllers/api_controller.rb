@@ -6,11 +6,7 @@ class ApiController < ApplicationController
   def execute
     name = params[:name]
     endpoint = Endpoint.find_by_name!(name)
-    call_data = {
-      method: request.method,
-      path: request.path,
-    }
-    result = call_plugin endpoint, call_data
+    result = call_plugin endpoint
     puts "Result:"
     puts(result)
     resp = result["response"]
@@ -26,7 +22,11 @@ class ApiController < ApplicationController
 
   private
 
-  def call_plugin(endpoint, call_data)
+  def call_plugin(endpoint)
+    call_data = {
+      method: request.method,
+      path: request.path,
+    }
     manifest = {
       # warning: this is not safe!
       :wasm => [{:path => "/wasm/#{endpoint.name}.wasm"}]
