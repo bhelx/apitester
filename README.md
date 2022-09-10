@@ -1,4 +1,4 @@
-# Extism API Tester
+# Extism API Mocking Tool
 
 This is a test project to demonstrate the capabilities of the [Extism](https://extism-docs.pages.dev/) plugin development kit.
 Extism allows you to safely run user submitted code in your infrastructure. This tool allows users to create custom endpoints by writing an `on_request` callback in [Assemblyscript](https://www.assemblyscript.org/). It's meant to show the power of giving users a plugin system rather than a static configuration screen for a set of rules such as [Beeceptor](https://beeceptor.com/).
