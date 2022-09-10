@@ -39,7 +39,7 @@ export function on_request(): i32 {
   const sleepFor = 2; // 2 seconds
   const statusCode = 200;
   const body = `{ "count": 42, "path": "${request.path}", "hello": "world"}`; 
-  
+
   respondWith(host, new HttpResponse(statusCode, sleepFor, headers, body, "application/json"));
   return 0;
 }
@@ -53,8 +53,25 @@ Click `Create Endpoint`. If it compiles and saves the endpoint you will see this
 You can now hit the endpoint at `http://localhost:3000/api/:endpoint_name`:
 
 ```
-$ curl http://localhost:3000/api/mynewendpoint -X GET
-{ "count": 42, "path": "/api/myendpoint", "hello": "world"}⏎ 
+$ curl http://localhost:3000/api/mynewendpoint -X GET -i
+HTTP/1.1 200 OK
+X-Frame-Options: SAMEORIGIN
+X-XSS-Protection: 0
+X-Content-Type-Options: nosniff
+X-Download-Options: noopen
+X-Permitted-Cross-Domain-Policies: none
+Referrer-Policy: strict-origin-when-cross-origin
+My-Header: 10
+Content-Type: application/json; charset=utf-8
+Vary: Accept
+ETag: W/"a2785d7decfe1b75e4071d3790f65989"
+Cache-Control: max-age=0, private, must-revalidate
+X-Request-Id: 6a6adef0-e653-43b5-b0a0-7f1d214e9326
+X-Runtime: 2.116181
+Server-Timing: start_processing.action_controller;dur=2.333984375, sql.active_record;dur=11.174072265625, instantiation.active_record;dur=0.309814453125, !compile_template.action_view;dur=7.50537109375, !render_template.action_view;dur=8.163330078125, render_template.action_view;dur=11.400390625, process_action.action_controller;dur=2083.990234375
+Transfer-Encoding: chunked
+
+{ "count": 42, "path": "/api/myendpoint", "hello": "world"} 
 ```
 
 ## Architecture
