@@ -49,7 +49,7 @@ Click `Create Endpoint`. If it compiles and saves the endpoint you will see this
 You can now hit the endpoint at `http://localhost:3000/api/:endpoint_name`:
 
 ```
-$ curl http://localhost:3000/api/mynewendpoint -X GET
+$ curl http://localhost:3000/api/mynewendpoint -X GET -i
 HTTP/1.1 200 OK
 X-Frame-Options: SAMEORIGIN
 X-XSS-Protection: 0
