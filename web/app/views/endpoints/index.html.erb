@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Endpoints</h1>
+
+<div id="endpoints">
+  <% @endpoints.each do |endpoint| %>
+    <%= render endpoint %>
+    <p>
+      <%= link_to "Show this endpoint", endpoint %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New endpoint", new_endpoint_path %>

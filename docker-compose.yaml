@@ -1,0 +1,20 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: ./web/
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./web:/myapp
+      - bundler_gems:/usr/local/bundle/
+      - ./data/wasm:/wasm
+      - ./data/database:/database
+  compiler:
+    build: ./compiler/
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./data/wasm:/wasm
+volumes:
+  bundler_gems:
+

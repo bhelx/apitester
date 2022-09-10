@@ -1,0 +1,29 @@
+{
+  "name": "assemblyscript-pdk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests",
+    "asbuild:debug": "asc assembly/index.ts --use abort=assembly/abort/myAbort --target debug",
+    "asbuild:release": "asc assembly/index.ts --use abort=assembly/abort/myAbort --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "start": "npx serve ."
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./build/release.js",
+      "types": "./build/release.d.ts"
+    }
+  },
+  "dependencies": {
+    "@extism/as-pdk": "github:bhelx/assemblyscript-pdk#index-ts-file",
+    "assemblyscript-json": "github:bhelx/assemblyscript-json#fix-compiler-error"
+  },
+  "devDependencies": {
+    "assemblyscript": "^0.21.3"
+  }
+}
