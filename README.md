@@ -30,6 +30,21 @@ Choose a name for the endpoint and write the handler code:
 
 ![Screenshot of endpoint edit](screenshots/endpoint_edit.png)
 
+```typescript
+export function on_request(): i32 {
+  const host = new Host();
+  const request = getRequest(host);
+  let headers = new Map<string, string>();
+  headers.set("My-Header", "10");
+  const sleepFor = 2; // 2 seconds
+  const statusCode = 200;
+  const body = `{ "count": 42, "path": "${request.path}", "hello": "world"}`; 
+  
+  respondWith(host, new HttpResponse(statusCode, sleepFor, headers, body, "application/json"));
+  return 0;
+}
+```
+
 Click `Create Endpoint`. If it compiles and saves the endpoint you will see this screeen:
 
 ![Screenshot of endpoint edit](screenshots/endpoint_created.png)
