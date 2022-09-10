@@ -41,3 +41,25 @@ You can now hit the endpoint at `http://localhost:3000/api/:endpoint_name`:
 $ curl http://localhost:3000/api/myendpoint -X GET
 { "count": 42, "path": "/api/myendpoint", "hello": "world"}⏎ 
 ```
+
+## Architecture
+
+There are 2 services, `web` and `compiler`
+
+### web
+
+The web applicaiton is written in rails and uses scaffold to keep things very easy. Extism comes with host clients in many languages
+so using rails was a good test of the ruby client.
+
+### compiler
+
+The compiler service is a node / express service that exposes an enpoint to compile Assemblyscript into wasm. It puts the compiled wasm
+into a shared volume at `/wasm`. The API looks like this:
+
+```
+curl http://localhost:4000/compile -X POST --data @test.json -H "Content-Type:application/json"
+```
+
+The rails Endpoint model has a callback to send the source code over to this service on update.
+
+
