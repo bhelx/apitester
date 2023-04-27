@@ -58,8 +58,8 @@ class HttpResponseResult {
   }
 }
 
-function getRequest(host: Host): HttpRequest {
-  const requestStr = host.inputString();
+function getRequest(): HttpRequest {
+  const requestStr = Host.inputString();
   const jsonObj: JSON.Obj = <JSON.Obj>(JSON.parse(requestStr));
   const method = jsonObj.getString("method");
   if (method == null) throw new Error("http request missing method");
@@ -73,14 +73,13 @@ function getRequest(host: Host): HttpRequest {
 }
 
 export function on_request(): i32 {
-  const host = new Host();
-  const request = getRequest(host);
+  const request = getRequest();
   let headers = new Map<string, string>();
   headers.set("My-Header", "10");
   const body = `{ "count": 42, "path": "${request.path}"}`; 
 
   let response = new HttpResponseResult(new HttpResponse(200, 0, headers, body, "application/json"));
-  host.outputString(response.stringify());
+  Host.outputString(response.stringify());
 
   return 0;
 }

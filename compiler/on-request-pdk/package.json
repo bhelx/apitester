@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "@extism/as-pdk": "github:bhelx/assemblyscript-pdk#index-ts-file",
+    "@extism/as-pdk": "github:extism/assemblyscript-pdk",
     "assemblyscript-json": "github:bhelx/assemblyscript-json#fix-compiler-error"
   },
   "devDependencies": {
