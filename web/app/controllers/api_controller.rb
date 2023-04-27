@@ -1,7 +1,6 @@
 require "extism"
 require "json"
 
-
 class ApiController < ApplicationController
   def execute
     name = params[:name]
@@ -31,9 +30,12 @@ class ApiController < ApplicationController
       # warning: this is not safe!
       :wasm => [{:path => "/wasm/#{endpoint.name}.wasm"}]
     }
-    plugin = Extism::Plugin.new(manifest)
-    Extism.set_log_file("/tmp/extism.log", "trace")
-    call_resp = plugin.call("on_request", JSON.dump(call_data))
-    JSON.parse(call_resp)
+
+    Extism.with_context do |ctx|
+      plugin = ctx.plugin(manifest)
+      Extism.set_log_file("/tmp/extism.log", "trace")
+      call_resp = plugin.call("on_request", JSON.dump(call_data))
+      JSON.parse(call_resp)
+    end
   end
 end

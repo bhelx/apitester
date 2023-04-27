@@ -11,7 +11,9 @@ RUN source /root/.cargo/env
 RUN curl https://raw.githubusercontent.com/extism/cli/main/install.sh > /tmp/install-extism.sh
 RUN chmod +x /tmp/install-extism.sh
 RUN /tmp/install-extism.sh /usr/local/bin
-RUN source "/root/.cargo/env" && extism --sudo --prefix /usr/local install git
+RUN source "/root/.cargo/env" && extism install latest
+RUN apt-get install -y python3-pip
+RUN pip3 install extism
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
