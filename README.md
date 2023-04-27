@@ -7,15 +7,14 @@ Although it's not designed to be this, it's not too dissimilar from [Cloudflare 
 
 ```typescript
 export function on_request(): i32 {
-  const host = new Host();
-  const request = getRequest(host);
+  const request = getRequest();
   let headers = new Map<string, string>();
   headers.set("My-Header", "10");
   const sleepFor = 2; // 2 seconds
   const statusCode = 200;
   const body = `{ "count": 42, "path": "${request.path}", "hello": "world"}`; 
 
-  respondWith(host, new HttpResponse(statusCode, sleepFor, headers, body, "application/json"));
+  respondWith(new HttpResponse(statusCode, sleepFor, headers, body, "application/json"));
   return 0;
 }
 ```

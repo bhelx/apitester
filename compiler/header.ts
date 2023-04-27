@@ -58,8 +58,8 @@ class HttpResponseResult {
   }
 }
 
-function getRequest(host: Host): HttpRequest {
-  const requestStr = host.inputString();
+function getRequest(): HttpRequest {
+  const requestStr = Host.inputString();
   const jsonObj: JSON.Obj = <JSON.Obj>(JSON.parse(requestStr));
   const method = jsonObj.getString("method");
   if (method == null) throw new Error("http request missing method");
@@ -72,7 +72,7 @@ function getRequest(host: Host): HttpRequest {
   return httpRequest;
 }
 
-function respondWith(host: Host, response: HttpResponse): void {
+function respondWith(response: HttpResponse): void {
     const result = new HttpResponseResult(response);
-    host.outputString(result.stringify());
+    Host.outputString(result.stringify());
 }
